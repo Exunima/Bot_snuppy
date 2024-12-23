@@ -15,3 +15,16 @@ new_venv/
 
 # Исключить папку reserv
 reserv/
+
+# Игнорировать все проекты, кроме Bot_snuppy
+../Bot_oprosnik/
+../GPT_Bot/
+../Kursovaya2024/
+../Kyrsovaya/
+../Micro_Pro/
+../MVK_MOV/
+../Practic_30september/
+../Practice_1/
+../Practica_2_Task/
+../teach/
+../Torrent/

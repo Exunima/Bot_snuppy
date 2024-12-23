@@ -1,5 +1,6 @@
-<<<<<<< HEAD
-# ваши изменения
-=======
-# изменения из другой ветки
->>>>>>> commit-hash
+.env
+.idea/
+.venv/
+new_venv/
+reserv/
+venv/

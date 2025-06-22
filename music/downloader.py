@@ -9,6 +9,11 @@ track_folder = "tracks"
 os.makedirs(track_folder, exist_ok=True)
 
 
+def sanitize_filename(filename):
+    # Заменяем все символы
+    return re.sub(r'[<>:"/\\|?*]', '_', filename)
+
+
 async def download_track(url, path):
     async with aiohttp.ClientSession() as session:
         async with session.get(url) as response:
@@ -24,7 +29,8 @@ async def download_and_queue_track(track_id, queue):
     track = client.tracks([track_id])[0]
     download_info = track.get_download_info(get_direct_links=True)
     download_url = download_info[0].direct_link
-    track_title = f"{track.title}.mp3"
+    # Чистим имя файла от недопустимых символов
+    track_title = sanitize_filename(f"{track.title}.mp3")
     path = os.path.join(track_folder, track_title)
     await download_track(download_url, path)
     queue.append(path)

@@ -1,17 +1,17 @@
 import os
 import re
-import asyncio
 from yandex_music import Client
 from config import YANDEX_MUSIC_TOKEN
 
 
 async def delete_file(path):
-    await asyncio.sleep(2)
     try:
-        os.remove(path)
-        print(f"Удалён: {path}")
+        if os.path.exists(path):
+            os.remove(path)
+        else:
+            print(f"[INFO] Файл уже удалён или не существует: {path}")
     except Exception as e:
-        print(f"Ошибка удаления {path}: {e}")
+        print(f"[ERROR] Не удалось удалить файл {path}: {e}")
 
 
 def get_track_ids(url):
@@ -52,4 +52,3 @@ def get_track_ids(url):
             raise ValueError(f"Ошибка при загрузке альбома: {e}")
 
     raise ValueError("Неверная ссылка: поддерживаются только треки, альбомы и плейлисты.")
-
